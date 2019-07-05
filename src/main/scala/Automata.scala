@@ -1,9 +1,9 @@
 import scala.annotation.tailrec
 
-case class Automaton(name: String,
-                     states: List[String], alphabet: List[Char],
-                     startState: String, finalStates: List[String],
-                     deltaFunction: Map[(String, Char), String]) {
+case class Automata(name: String,
+                    states: Set[String], alphabet: Set[Char],
+                    startState: String, finalStates: Set[String],
+                    deltaFunction: Map[(String, Char), String]) {
 def isWordRecognized(word: String): Boolean = traverseWord(word) match {
 case Success(_) => true
 case Failure(_, _) => false
@@ -54,8 +54,8 @@ def findNextState(fromState:String, withLetter: Char): String = {
 
   possibleStates match {
     case Some(String) => String
-    case _ => sys.error("Wrong way calling function findNextState. " +
-                        "It must be called only when we are sure there is next state. ")
+    case _ => sys.error("Wrong way of calling function findNextState. " +
+                        "It must be called only when it is sure there is next state. ")
   }
 
 }
