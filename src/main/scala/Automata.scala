@@ -1,9 +1,9 @@
 import scala.annotation.tailrec
 
 case class Automata(name: String,
-                    states: Set[String], alphabet: Set[Char],
+                    states: Set[String], alphabet: Set[String],
                     startState: String, finalStates: Set[String],
-                    deltaFunction: Map[(String, Char), String]) {
+                    deltaFunction: Map[(String, String), String]) {
   def isWordRecognized(word: String): Boolean = traverseWord(word) match {
     case Success(_) => true
     case Failure(_, _) => false
@@ -14,7 +14,7 @@ case class Automata(name: String,
     val listOfLetters = word.toList
     @tailrec
     def helper(currState: String, currLetterIndex: Int, path: String): Checked[String, String] = {
-      val currLetter = listOfLetters(currLetterIndex)
+      val currLetter = listOfLetters(currLetterIndex).toString
 
       //next letter exists
       if (currLetterIndex + 1 == listOfLetters.length) {
@@ -39,7 +39,7 @@ case class Automata(name: String,
     helper(startState, 0, "")
   }
 
-  def isTransitionPossible(fromState: String, withLetter: Char): Boolean = {
+  def isTransitionPossible(fromState: String, withLetter: String): Boolean = {
     val possibleStates = deltaFunction.get((fromState, withLetter))
 
     possibleStates match {
@@ -48,7 +48,7 @@ case class Automata(name: String,
     }
   }
 
-  def findNextState(fromState: String, withLetter: Char): String = {
+  def findNextState(fromState: String, withLetter: String): String = {
     val possibleStates = deltaFunction.get((fromState, withLetter))
 
     possibleStates match {
@@ -59,7 +59,3 @@ case class Automata(name: String,
 
   }
 }
-
-/*object Automaton{
-  def apply() = ???
-}*/
