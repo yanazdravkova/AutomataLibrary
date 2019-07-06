@@ -91,13 +91,50 @@ object AutomataRegistrationApp {
     _ <- putStrLn(map.toString)
   } yield ()
 
+  def registrationOutput(automataValidation: Validated[RegistrationError, Automata]): IO[Unit] = automataValidation match {
+    case Valid(automata) => for {
+      _ <- putStrLn("Automata registered successfully:")
+      _ <- putStrLn(automata.toString)
+    } yield ()
+
+    case Invalid(errors) =>
+      errors
+        .map(errorToDescription)
+        .map(putStrLn)
+        .foldLeft {
+          putStrLn("The following errors have been found:")
+        } {
+          (acc, next) => acc.flatMap(_ => next)
+        }
+  }
+
+  def errorToDescription(error: RegistrationError): String = error match{
+    case NameIsEmpty => "Name is empty"
+
+    case StatesSetIsEmpty => "States set is empty"
+
+    case AlphabetIsEmpty => "Alphabet is empty"
+
+    case StartStateIsEmpty => "Start state is empty"
+    case StartStateNotPartOfStatesSet => "Start state is not part of states set"
+
+    case FinalStatesSetIsEmpty => "Final set is empty"
+    case FinalStatesNotSubsetOfAllStates => "Final states set is not subset of all states set"
+
+    case DeltaFunctionIsEmpty => "Delta function is empty"
+    case DeltaFunctionIsIncompatible => "Delta function is incompatible with the rest of the automata input"
+  }
+
   def loop: IO[Unit] = for {
     registrationForm <- registrationInput
+    validatedAutomata = AutomataRegistration.registerAutomata(registrationForm)
+    _ <- registrationOutput(validatedAutomata)
   //  shouldContinue <- promptForContinuation
    // _ <- if (shouldContinue) loop else IO.unit
   } yield ()
 
   def main(args: Array[String]): Unit = {
+
     AutomataRegistrationApp.loop.unsafeRun()
   }
 }
