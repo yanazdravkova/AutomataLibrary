@@ -63,20 +63,21 @@ object AutomataValidation {
   }
 
   def validateDeltaFunction(deltaFunction: Map[(String, String), String],
-                            states: Set[String], alphabet: Set[String]): Validated[RegistrationError, Map[(String, String), String]] = ???/*{
+                            states: Set[String], alphabet: Set[String]): Validated[RegistrationError, Map[(String, String), String]] = {
     val validateDeltaFunctionIsNotEmpty =
       if(deltaFunction.nonEmpty) Valid(deltaFunction)
       else Invalid(Chain(DeltaFunctionIsEmpty))
 
+    def validateTransition(transition: ((String, String), String)): Boolean = transition match {
+      case ((oldState, letter), newState) => states(oldState) && alphabet(letter) && states(newState)
+    }
     val validateDeltaFunctionCompatibility =
-      for((key, value) <- deltaFunction) {
-        if(!(states.contains(key._1) && alphabet.contains(key._2) && states.contains(value))) Invalid(Chain(DeltaFunctionIsIncompatible))
-      }
-    Valid(deltaFunction)
+      if (deltaFunction.forall(validateTransition)) Valid(deltaFunction)
+      else Invalid(Chain(DeltaFunctionIsIncompatible))
 
     (
       validateDeltaFunctionIsNotEmpty,
       validateDeltaFunctionCompatibility
     ).zip.map(_ => deltaFunction)
-  }*/
+  }
 }
