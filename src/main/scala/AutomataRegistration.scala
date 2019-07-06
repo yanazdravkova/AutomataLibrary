@@ -73,6 +73,7 @@ object AutomataRegistrationApp {
     updatedDeltaFunction = currDeltaFuction + rule
     _ <- deltaOutput(updatedDeltaFunction)
     shouldContinue <- promptForContinuation
+    _ <- if(shouldContinue) deltaFunctionInput("Enter more rules: ", updatedDeltaFunction) else IO.unit
   } yield updatedDeltaFunction
 
   def statesOutput(set: Set[String]): IO[Unit] = for {
