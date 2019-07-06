@@ -77,6 +77,23 @@ object Validated {
     def zipMap[R](f: (A, B, C, D) => R): Validated[EE, R] = tuple.zip.map(f.tupled)
   }
 
+  implicit class ValidatedTuple6[EE, A, B, C, D, E, F](
+                                                     val tuple: (
+                                                       Validated[EE, A],
+                                                         Validated[EE, B],
+                                                         Validated[EE, C],
+                                                         Validated[EE, D],
+                                                         Validated[EE, E],
+                                                         Validated[EE, F]
+                                                       )
+                                                   ) extends AnyVal {
+    def zip: Validated[EE, (A, B, C, D, E, F)] = tuple match {
+      case (va, vb, vc, vd, ve, vf) =>
+        va.zip(vb).zip(vc).zip(vd).zip(ve).zip(vf).map { case (((((a, b), c), d), e), f) => (a, b, c, d, e, f)}
+    }
+    def zipMap[R](f: (A, B, C, D, E, F) => R): Validated[EE, R] = tuple.zip.map(f.tupled)
+  }
+
   implicit class ValidatedTuple5[EE, A, B, C, D, E](
                                                      val tuple: (
                                                        Validated[EE, A],
