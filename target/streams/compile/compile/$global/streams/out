@@ -1,4 +1,10 @@
-[0m[[0m[31merror[0m] [0m[0mD:\REPOS\Automatons\src\main\scala\AutomataRegistration.scala:148:28: no arguments allowed for nullary constructor Serializer: ()automata.Serializer[0m
-[0m[[0m[31merror[0m] [0m[0m    val s = new Serializer("")[0m
-[0m[[0m[31merror[0m] [0m[0m                           ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0mD:\REPOS\Automatons\src\main\scala\Serializer.scala:44:38: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : scala.collection.immutable.Set[String][0m
+[0m[[0m[31merror[0m] [0m[0m required: String[0m
+[0m[[0m[31merror[0m] [0m[0m    (for(s <- states) yield s.state) + "\r\n"}[0m
+[0m[[0m[31merror[0m] [0m[0m                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0mD:\REPOS\Automatons\src\main\scala\Serializer.scala:47:41: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : scala.collection.immutable.Set[String][0m
+[0m[[0m[31merror[0m] [0m[0m required: String[0m
+[0m[[0m[31merror[0m] [0m[0m    (for(l <- alphabet) yield l.letter) + "\r\n"}[0m
+[0m[[0m[31merror[0m] [0m[0m                                        ^[0m

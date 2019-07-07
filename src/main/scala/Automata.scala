@@ -70,12 +70,4 @@ case class Automata(name: String,
         "It must be called only when it is sure there is next state. ")
     }
   }
-
-  def serialize(): Unit = {
-    val stream = new ObjectOutputStream(new FileOutputStream("D:/REPOS/Automatons/output.txt"))
-    for(i <- states.map(s => s.state)) stream.writeChars(i
-    )
-    //stream.writeObject(this)
-    stream.close()
-  }
 }
