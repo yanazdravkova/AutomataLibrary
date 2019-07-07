@@ -135,19 +135,15 @@ object AutomataRegistrationApp {
     case DeltaFunctionIsIncompatible => "Delta function is incompatible with the rest of the automata input"
   }
 
-  def loop(): IO[Unit] = for {
+  def loopRegistratioOfAutomata(): IO[Unit] = for {
     registrationForm <- registrationInput
     validatedAutomata = AutomataRegistration.registerAutomata(registrationForm)
     tmp = serializeIfPossible(validatedAutomata)
     _ <- registrationOutput(validatedAutomata)
     shouldContinue <- promptForContinuation
-    _ <- if (shouldContinue) loop() else IO.unit
+    _ <- if (shouldContinue) loopRegistratioOfAutomata() else IO.unit
   } yield ()
 
-  def print(a: Automata): IO[Unit] = for{
-    _ <-putStrLn("IN PRINT")
-    _ <- registrationOutput(Valid(a))
-  }yield ()
 }
 
 

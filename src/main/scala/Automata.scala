@@ -81,7 +81,7 @@ case class Automata(name: String,
     deltaFunction.foldLeft("") { (s: String, pair: ((State, Letter), State)) =>
       s + pair._1._1.state + "->"  + pair._2.state + "[label=\"" +  pair._1._2.letter +  "\"];" + "\r\n"} +
       startState.state + "[color = yellow];" + "\r\n" +
-      finalStates.foldLeft("") { (s: String, state: State) =>  state.state + "[color = green];" + "\r\n"} +
+      finalStates.foldLeft("") { (s: String, state: State) => s + state.state + "[color = green];" + "\r\n"} +
       "}"
   }
 }

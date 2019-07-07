@@ -25,7 +25,6 @@ case object DeltaFunctionIsEmpty extends RegistrationError
 case object DeltaFunctionIsIncompatible extends RegistrationError
 
 object AutomataValidation {
-  //!!! TO DO Check if automata with the same name is already saved in the file
   def validateName(name: String): Validated[RegistrationError, String] = {
     val validateNameIsNotEmpty =
       if (name.nonEmpty) Valid(name)
@@ -94,14 +93,13 @@ object AutomataValidation {
       case ((oldState, letter), newState) => states(oldState) && alphabet(letter) && states(newState)
     }
 
-    /*val validateDeltaFunctionCompatibility =
+    val validateDeltaFunctionCompatibility =
       if (deltaFunction.forall(validateTransition)) Valid(deltaFunction)
       else Invalid(Chain(DeltaFunctionIsIncompatible))
 
     (
       validateDeltaFunctionIsNotEmpty,
       validateDeltaFunctionCompatibility
-    ).zip.map(_ => deltaFunction)*/
-    validateDeltaFunctionIsNotEmpty
+    ).zip.map(_ => deltaFunction)
   }
 }

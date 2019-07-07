@@ -44,7 +44,7 @@ object AutomataOperationsApp {
 
 
   def wordOutput(word: List[Letter]): IO[Unit] = for {
-    _ <- putStrLn("Alphabet registered successfully:")
+    _ <- putStrLn("Word registered successfully:")
     _ <- putStrLn(word.toString)
   } yield ()
 
@@ -78,5 +78,4 @@ object AutomataOperationsApp {
     _ <- toDotOutput(converted)
   } yield ()
 }
-
 
