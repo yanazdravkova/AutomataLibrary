@@ -16,4 +16,4 @@ Some possible improvements
 * Improve code quality
 * Unit tests
 
-Note* Used code from FMI Scala Course examples and homework solutions
+Note* Code from FMI Scala Course examples and homework solutions is used in the project
