@@ -15,3 +15,5 @@ Some possible improvements
 * Add edit automata functionality
 * Improve code quality
 * Unit tests
+
+Note* Used code from FMI Scala Course examples and homework solutions
