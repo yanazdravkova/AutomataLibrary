@@ -1,5 +1,6 @@
 # Automata Library
 Scala FMI Course Project
+[Wiki automata theory] (https://en.wikipedia.org/wiki/Automata_theory)
 
 Present functionalities:
 * Console interface
