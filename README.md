@@ -8,8 +8,8 @@ Present functionalities:
 * Check for word recognition
 * Convert automata to format used for visualization with [Graphviz](https://dreampuf.github.io/GraphvizOnline)
 
--> Possible future improvements
-Improve code quality
-Add composing automatas functionality
-Add edit automata functionality
-Unit tests
+Some possible improvements
+* Improve code quality
+* Add composing automatas functionality
+* Add edit automata functionality
+* Unit tests
