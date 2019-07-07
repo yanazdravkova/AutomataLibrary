@@ -65,8 +65,8 @@ object AutomataRegistrationApp {
     updatedStates = currStates + State(state)
     _ <- statesOutput(updatedStates)
     shouldContinue <- promptForContinuation
-    _ <- if (shouldContinue) statesInput("Enter more states: ",updatedStates) else IO.unit
-  } yield updatedStates
+    newUpdated <- if (shouldContinue) statesInput("Enter more states: ",updatedStates) else new IO(() => updatedStates)
+  } yield newUpdated
 
   def alphabetInput(prompt: String, currAlphabet: Set[Letter] = Set.empty): IO[Set[Letter]] = for {
     _ <- putStrLn(prompt)
@@ -83,8 +83,8 @@ object AutomataRegistrationApp {
     updatedDeltaFunction = currDeltaFuction + rule
     _ <- deltaOutput(updatedDeltaFunction)
     shouldContinue <- promptForContinuation
-    _ <- if(shouldContinue) deltaFunctionInput("Enter more rules: ", updatedDeltaFunction) else IO.unit
-  } yield updatedDeltaFunction
+    newUpdated <- if(shouldContinue) deltaFunctionInput("Enter more rules: ", updatedDeltaFunction) else new IO(() => updatedDeltaFunction)
+  } yield newUpdated
 
   def statesOutput(set: Set[State]): IO[Unit] = for {
     _ <- putStrLn("Sates accepted successfully:")
