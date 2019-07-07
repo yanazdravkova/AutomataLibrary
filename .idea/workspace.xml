@@ -5,23 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="294a712c-36b6-4d48-b7e7-11fc13176bbe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fileNames.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fileNames.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/AutomataRegistration.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/AutomataRegistration.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Deserializer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Deserializer.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/automatons_2.13-0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/automatons_2.13-0.1.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/automata/AutomataRegistration$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/automata/AutomataRegistration$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/automata/AutomataRegistrationApp$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/automata/AutomataRegistrationApp$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/automata/AutomataRegistrationApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/automata/AutomataRegistrationApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/automata/Serializer$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/automata/Serializer$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/automata/Serializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/automata/Serializer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/automata/constantFileNames$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/automata/constantFileNames$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/streams/compile/compile/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compile/$global/streams/out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncSetup/$global/streams/inc_compile_2.13.zip" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncSetup/$global/streams/inc_compile_2.13.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncremental/$global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncremental/$global/streams/export" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncremental/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncremental/$global/streams/out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/streams/compile/packageBin/$global/streams/inputs" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/packageBin/$global/streams/inputs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/streams/compile/packageBin/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/packageBin/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Automata.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Automata.scala" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -43,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/Automata.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="73" selection-start-line="73" selection-end-line="73" />
+            <state relative-caret-position="622">
+              <caret line="59" column="26" lean-forward="true" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
               <folding>
                 <element signature="e#18#71#0" expanded="true" />
               </folding>
@@ -79,14 +63,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/AutomataRegistration.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="165" lean-forward="true" selection-start-line="165" selection-end-line="165" />
+            <state relative-caret-position="17">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
               <folding>
                 <element signature="e#17#36#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/AutomataOperations.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="34" lean-forward="true" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -159,10 +152,11 @@
         <option value="$PROJECT_DIR$/src/main/scala/Checked.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/Validated.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/AutomataValidation.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/Automata.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/Serializer.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/Deserializer.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/AutomataRegistration.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/AutomataOperations.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/Automata.scala" />
       </list>
     </option>
   </component>
@@ -345,16 +339,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/Automata.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
-          <folding>
-            <element signature="e#18#71#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/AutomataValidation.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="692">
@@ -379,6 +363,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/AutomataRegistration.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#17#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/AutomataOperations.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="34" lean-forward="true" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/Serializer.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
@@ -389,12 +390,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/AutomataRegistration.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/Automata.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="165" lean-forward="true" selection-start-line="165" selection-end-line="165" />
+        <state relative-caret-position="622">
+          <caret line="59" column="26" lean-forward="true" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
           <folding>
-            <element signature="e#17#36#0" expanded="true" />
+            <element signature="e#18#71#0" expanded="true" />
           </folding>
         </state>
       </provider>
