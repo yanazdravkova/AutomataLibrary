@@ -8,8 +8,12 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\Deserializer$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\AutomataWithTheSameNameAlreadyRegistered$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\AutomataWithTheSameNameAlreadyRegistered$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	automata\AutomataOperations.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\AutomataOperations.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\FinalStatesNotSubsetOfAllStates$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\FinalStatesNotSubsetOfAllStates$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	automata\App$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\App$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\DeltaFunctionIsEmpty.class[0m
@@ -24,6 +28,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\io\Console$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\NameIsEmpty.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\NameIsEmpty.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	automata\App.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\App.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\AutomataValidation.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\AutomataValidation.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\StartStateIsEmpty$.class[0m
@@ -108,8 +114,12 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\AlphabetIsEmpty.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	io\Console.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\io\Console.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	automata\AutomataOperationsApp.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\AutomataOperationsApp.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\State$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\State$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	automata\AutomataOperations$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\AutomataOperations$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\Valid.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\Valid.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\StatesSetIsEmpty$.class[0m
@@ -120,6 +130,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\Valid$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\Validated$ValidatedOption.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\Validated$ValidatedOption.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	automata\AutomataOperationsApp$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\AutomataOperationsApp$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\Validated$ValidatedTuple4$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\Validated$ValidatedTuple4$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\DeltaFunctionIsIncompatible$.class[0m

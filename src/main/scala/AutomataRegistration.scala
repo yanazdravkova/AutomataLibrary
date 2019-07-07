@@ -1,4 +1,5 @@
 package automata
+
 import io.Console._
 import io.IO
 
@@ -69,8 +70,8 @@ object AutomataRegistrationApp {
     updatedAlphabet = currAlphabet + Letter(letter)
     _ <- alphabetOutput(updatedAlphabet)
     shouldContinue <- promptForContinuation
-    _ <- if (shouldContinue) alphabetInput("Enter more letters: ", updatedAlphabet) else IO.unit
-  } yield updatedAlphabet
+    newUpdated <- if (shouldContinue) alphabetInput("Enter more letters: ", updatedAlphabet) else IO(() => updatedAlphabet)
+  } yield newUpdated
 
   def deltaFunctionInput(prompt: String, currDeltaFuction: types.DeltaFunction = Map.empty): IO[types.DeltaFunction] = for {
     _ <- putStrLn(prompt)
@@ -147,21 +148,6 @@ object AutomataRegistrationApp {
     _ <-putStrLn("IN PRINT")
     _ <- registrationOutput(Valid(a))
   }yield ()
-  def main(args: Array[String]): Unit = {
-    /*val serializer = new Serializer
-    AutomataRegistrationApp.loop(serializer).unsafeRun()
-*/
-   /* val a1 = new Automata("test", Set(State("1"), State("2"), State("3"), State("4")), Set(Letter("a"), Letter("b"), Letter("c")),
-      State("1"), Set(State("3"), State("4")), Map((State("1"), Letter("a")) -> State("2"), (State("2"), Letter("b")) -> State("3")))
-
-    val a2 = new Automata("aut", Set(State("1"), State("2"), State("5"), State("4")), Set(Letter("a"), Letter("b"), Letter("c")),
-      State("1"), Set(State("5"), State("4")), Map((State("1"), Letter("a")) -> State("2"), (State("2"), Letter("b")) -> State("3")))
-
-    Serializer.serialize(a2)*/
-    val deserializedAutomata = Deserializer.deserialize("test")
-    AutomataRegistrationApp.print(deserializedAutomata).unsafeRun()
-    //s.serialize(a2)
-  }
 }
 
 

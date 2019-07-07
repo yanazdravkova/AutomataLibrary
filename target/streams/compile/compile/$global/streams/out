@@ -1,4 +1,6 @@
-[0m[[0m[31merror[0m] [0m[0mD:\REPOS\Automatons\src\main\scala\AutomataRegistration.scala:147:38: automata.Validated.type does not take parameters[0m
-[0m[[0m[31merror[0m] [0m[0m    _ <- registrationOutput(Validated(a))[0m
-[0m[[0m[31merror[0m] [0m[0m                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0mD:\REPOS\Automatons\src\main\scala\AutomataOperations.scala:26:41: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
+[0m[[0m[31merror[0m] [0m[0m required: String[0m
+[0m[[0m[31merror[0m] [0m[0m  } yield AutomataOperations.toDotFormat(automataName)[0m
+[0m[[0m[31merror[0m] [0m[0m                                        ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

@@ -26,28 +26,31 @@ case class Automata(name: String,
   }
 
   def traverseWord(word: List[Letter]): Checked[types.Path, State] = {
+    ///TODO Refactor - to be more readable
     @tailrec
     def helper(currState: State, currLetterIndex: Int, path: types.Path): Checked[types.Path, State] = {
       val currLetter = word(currLetterIndex)
 
       //next letter exists
-      if (currLetterIndex + 1 != word.length) {
+      if ((currLetterIndex + 1 )!= word.length) {
         if (isTransitionPossible(currState, currLetter)) {
           val nextState = findNextState(currState, currLetter)
           helper(nextState, currLetterIndex + 1,
-            path.appended((currState,currLetter, nextState)))
+            path.appended((currState, currLetter, nextState)))
         }
         else {
-          return Failure(path, currState)
+          return Failure(path, State(currState.state))
         }
       }
       //there are no letters left
       else {
-        if (finalStates.contains(currState)) {
-          return Success(path.appended(currState))
+        if(isTransitionPossible(currState, currLetter)){
+          val nextState = findNextState(currState, currLetter)
+          if (finalStates.contains(nextState)) return Success(path.appended((currState, currLetter, nextState)))
+          else Failure(path, currState)
         }
         else {
-          return Failure(path.appended(currState), currState)
+          return Failure(path, currState)
         }
       }
     }
@@ -71,5 +74,14 @@ case class Automata(name: String,
       case _ => sys.error("Wrong way of calling function findNextState. " +
         "It must be called only when it is sure there is next state. ")
     }
+  }
+
+  def toDotFormat(): String = {
+    "digraph {" +
+    deltaFunction.foldLeft("") { (s: String, pair: ((State, Letter), State)) =>
+      s + pair._1._1.state + "->"  + pair._2.state + "[label=\"" +  pair._1._2.letter +  "\"];" + "\r\n"} +
+      startState.state + "[color = yellow];" + "\r\n" +
+      finalStates.foldLeft("") { (s: String, state: State) =>  state.state + "[color = green];" + "\r\n"} +
+      "}"
   }
 }
