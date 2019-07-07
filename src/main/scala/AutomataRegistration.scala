@@ -1,15 +1,16 @@
+package automata
 import io.Console._
 import io.IO
 
 case class RegistrationForm(name: String,
-                            states: Set[String], alphabet: Set[String],
-                            startState: String, finalStates: Set[String],
-                            deltaFunction: Map[(String, String), String])
+                            states: Set[State], alphabet: Set[Letter],
+                            startState: State, finalStates: Set[State],
+                            deltaFunction: types.DeltaFunction)
 
 object AutomataRegistration {
   def registerAutomata(form: RegistrationForm): Validated[RegistrationError, Automata] = {
     import AutomataValidation._
-    (
+     val a = (
       validateName(form.name),
       validateStatesSet(form.states),
       validateAlphabet(form.alphabet),
@@ -17,6 +18,10 @@ object AutomataRegistration {
       validateFinalStatesSet(form.finalStates, form.states),
       validateDeltaFunction(form.deltaFunction, form.states, form.alphabet),
     ).zipMap(Automata.apply)
+    a match {
+      case Valid(a) => a.serialize()
+    }
+    return a
   }
 }
 
@@ -28,7 +33,7 @@ object AutomataRegistrationApp {
     name <- promptInput("ENTER AUTOMATA NAME")
     states <- statesInput("ENTER STATES")
     alphabet <- alphabetInput("ENTER ALPHABET")
-    startState <- promptInput("ENTER START STATE")
+    startState <- startStateInput("ENTER START STATE")
     finalStates <- statesInput("ENTER FINAL STATES")
     deltaFunction <- deltaFunctionInput("ENTER DELTA FUNCTION")
   } yield RegistrationForm(name, states, alphabet, startState, finalStates, deltaFunction)
@@ -42,32 +47,37 @@ object AutomataRegistrationApp {
     input <- getStrLn
   } yield input
 
-  def ruleInput(prompt: String) : IO[((String, String), String)] = for {
+  def startStateInput(prompt: String): IO[State] = for {
+    _ <- putStrLn(prompt)
+    input <- getStrLn
+  } yield State(input)
+
+  def ruleInput(prompt: String) : IO[((State, Letter), State)] = for {
     _ <- putStrLn(prompt)
     fromState <- promptInput("From state: ")
     withLetter <- promptInput("With letter: ")
     toState <- promptInput("To state: ")
-  }yield  ((fromState, withLetter), toState)
+  }yield ((State(fromState), Letter(withLetter)), State(toState))
 
-  def statesInput(prompt: String, currStates: Set[String] = Set.empty): IO[Set[String]] = for {
+  def statesInput(prompt: String, currStates: Set[State] = Set.empty): IO[Set[State]] = for {
     _ <- putStrLn(prompt)
     state <- promptInput("Enter state: ")
-    updatedStates = currStates + state
+    updatedStates = currStates + State(state)
     _ <- statesOutput(updatedStates)
     shouldContinue <- promptForContinuation
     _ <- if (shouldContinue) statesInput("Enter more states: ",updatedStates) else IO.unit
   } yield updatedStates
 
-  def alphabetInput(prompt: String, currAlphabet: Set[String] = Set.empty): IO[Set[String]] = for {
+  def alphabetInput(prompt: String, currAlphabet: Set[Letter] = Set.empty): IO[Set[Letter]] = for {
     _ <- putStrLn(prompt)
     letter <- promptInput("Enter letter: ")
-    updatedAlphabet = currAlphabet + letter
+    updatedAlphabet = currAlphabet + Letter(letter)
     _ <- alphabetOutput(updatedAlphabet)
     shouldContinue <- promptForContinuation
     _ <- if (shouldContinue) alphabetInput("Enter more letters: ", updatedAlphabet) else IO.unit
   } yield updatedAlphabet
 
-  def deltaFunctionInput(prompt: String, currDeltaFuction: Map[(String, String), String] = Map.empty): IO[Map[(String, String), String]] = for {
+  def deltaFunctionInput(prompt: String, currDeltaFuction: types.DeltaFunction = Map.empty): IO[types.DeltaFunction] = for {
     _ <- putStrLn(prompt)
     rule <- ruleInput("Enter rule: ")
     updatedDeltaFunction = currDeltaFuction + rule
@@ -76,17 +86,17 @@ object AutomataRegistrationApp {
     _ <- if(shouldContinue) deltaFunctionInput("Enter more rules: ", updatedDeltaFunction) else IO.unit
   } yield updatedDeltaFunction
 
-  def statesOutput(set: Set[String]): IO[Unit] = for {
-    _ <- putStrLn("Sates registered successfully:")
+  def statesOutput(set: Set[State]): IO[Unit] = for {
+    _ <- putStrLn("Sates accepted successfully:")
     _ <- putStrLn(set.toString)
   } yield ()
 
-  def alphabetOutput(set: Set[String]): IO[Unit] = for {
+  def alphabetOutput(set: Set[Letter]): IO[Unit] = for {
     _ <- putStrLn("Alphabet registered successfully:")
     _ <- putStrLn(set.toString)
   } yield ()
 
-  def deltaOutput(map:  Map[(String, String), String]): IO[Unit] = for {
+  def deltaOutput(map:  types.DeltaFunction): IO[Unit] = for {
     _ <- putStrLn("Delta function registered successfully:")
     _ <- putStrLn(map.toString)
   } yield ()
@@ -119,7 +129,7 @@ object AutomataRegistrationApp {
     case StartStateNotPartOfStatesSet => "Start state is not part of states set"
 
     case FinalStatesSetIsEmpty => "Final set is empty"
-    case FinalStatesNotSubsetOfAllStates => "Final states set is not subset of all states set"
+    case FinalStatesNotSubsetOfAllStates(set) => "Final states set" + set.toString() + " is not subset of all states set"
 
     case DeltaFunctionIsEmpty => "Delta function is empty"
     case DeltaFunctionIsIncompatible => "Delta function is incompatible with the rest of the automata input"

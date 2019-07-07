@@ -1,3 +1,5 @@
+package automata
+
 sealed trait Checked[+P, +F]
 
 case class Success[+P](path: P) extends Checked[P, Nothing]

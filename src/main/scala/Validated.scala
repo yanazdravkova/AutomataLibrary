@@ -1,3 +1,5 @@
+package automata
+
 sealed trait Validated[+E, +A] {
   def isValid: Boolean = fold(_ => false, _ => true)
   def getOrElse[B >: A](default: => B): B = fold(_ => default, identity)

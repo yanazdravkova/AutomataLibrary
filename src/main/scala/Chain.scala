@@ -1,3 +1,5 @@
+package automata
+
 import scala.annotation.tailrec
 
 sealed trait Chain[+A] {

@@ -1,16 +1,5 @@
-[0m[[0m[31merror[0m] [0m[0mD:\REPOS\Automatons\src\main\scala\AutomataRegistration.scala:18:34: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Map[(String, Char),String][0m
-[0m[[0m[31merror[0m] [0m[0m required: Map[(String, String),String][0m
-[0m[[0m[31merror[0m] [0m[0m      validateDeltaFunction(form.deltaFunction, form.states, form.alphabet),[0m
-[0m[[0m[31merror[0m] [0m[0m                                 ^[0m
-[0m[[0m[31merror[0m] [0m[0mD:\REPOS\Automatons\src\main\scala\AutomataRegistration.scala:19:23: missing argument list for method apply in object Automata[0m
-[0m[[0m[31merror[0m] [0m[0mUnapplied methods are only converted to functions when a function type is expected.[0m
-[0m[[0m[31merror[0m] [0m[0mYou can make this conversion explicit by writing `apply _` or `apply(_,_,_,_,_,_)` instead of `apply`.[0m
-[0m[[0m[31merror[0m] [0m[0m    ).zipMap(Automata.apply)[0m
-[0m[[0m[31merror[0m] [0m[0m                      ^[0m
-[0m[[0m[31merror[0m] [0m[0mD:\REPOS\Automatons\src\main\scala\AutomataRegistration.scala:34:77: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Map[(String, String),String][0m
-[0m[[0m[31merror[0m] [0m[0m required: Map[(String, Char),String][0m
-[0m[[0m[31merror[0m] [0m[0m  } yield RegistrationForm(name, states, alphabet, startState, finalStates, deltaFunction)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                            ^[0m
-[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
+[0m[[0m[33mwarn[0m] [0m[0mD:\REPOS\Automatons\src\main\scala\AutomataRegistration.scala:21:5: match may not be exhaustive.[0m
+[0m[[0m[33mwarn[0m] [0m[0mIt would fail on the following input: Invalid(_)[0m
+[0m[[0m[33mwarn[0m] [0m[0m    a match {[0m
+[0m[[0m[33mwarn[0m] [0m[0m    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m

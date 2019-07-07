@@ -1,26 +1,39 @@
+package automata
+
+import java.io.{FileOutputStream, ObjectOutputStream}
+
 import scala.annotation.tailrec
 
+object types {
+type DeltaFunction = Map[(State, Letter), State]
+}
+
+case class State(state: String) {
+  def nonEmpty: Boolean = state.nonEmpty
+}
+
+case class Letter(letter: String)
+
 case class Automata(name: String,
-                    states: Set[String], alphabet: Set[String],
-                    startState: String, finalStates: Set[String],
-                    deltaFunction: Map[(String, String), String]) {
-  def isWordRecognized(word: String): Boolean = traverseWord(word) match {
+                    states: Set[State], alphabet: Set[Letter],
+                    startState: State, finalStates: Set[State],
+                    deltaFunction: types.DeltaFunction) extends Serializable {
+  def isWordRecognized(word: List[Letter]): Boolean = traverseWord(word) match {
     case Success(_) => true
     case Failure(_, _) => false
     case _ => sys.error("Unexpected return type of traverseWord. ")
   }
 
-  def traverseWord(word: String): Checked[String, String] = {
-    val listOfLetters = word.toList
+  def traverseWord(word: List[Letter]): Checked[String, State] = {
     @tailrec
-    def helper(currState: String, currLetterIndex: Int, path: String): Checked[String, String] = {
-      val currLetter = listOfLetters(currLetterIndex).toString
+    def helper(currState: State, currLetterIndex: Int, path: String): Checked[String, State] = {
+      val currLetter = word(currLetterIndex)
 
       //next letter exists
-      if (currLetterIndex + 1 == listOfLetters.length) {
+      if (currLetterIndex + 1 == word.length) {
         if (isTransitionPossible(currState, currLetter)) {
           helper(findNextState(currState, currLetter), currLetterIndex + 1,
-            path ++ currState ++ currLetter.toString)
+            path ++ currState.state ++ currLetter.toString)
         }
         else {
           return Failure(path, currState)
@@ -29,17 +42,17 @@ case class Automata(name: String,
       //there are no letters left
       else {
         if (finalStates.contains(currState)) {
-          return Success(path ++ currState)
+          return Success(path ++ currState.state)
         }
         else {
-          return Failure(path ++ currState, currState)
+          return Failure(path ++ currState.state, currState)
         }
       }
     }
     helper(startState, 0, "")
   }
 
-  def isTransitionPossible(fromState: String, withLetter: String): Boolean = {
+  def isTransitionPossible(fromState: State, withLetter: Letter): Boolean = {
     val possibleStates = deltaFunction.get((fromState, withLetter))
 
     possibleStates match {
@@ -48,7 +61,7 @@ case class Automata(name: String,
     }
   }
 
-  def findNextState(fromState: String, withLetter: String): String = {
+  def findNextState(fromState: State, withLetter: Letter): State = {
     val possibleStates = deltaFunction.get((fromState, withLetter))
 
     possibleStates match {
@@ -56,6 +69,13 @@ case class Automata(name: String,
       case _ => sys.error("Wrong way of calling function findNextState. " +
         "It must be called only when it is sure there is next state. ")
     }
+  }
 
+  def serialize(): Unit = {
+    val stream = new ObjectOutputStream(new FileOutputStream("D:/REPOS/Automatons/output.txt"))
+    for(i <- states.map(s => s.state)) stream.writeChars(i
+    )
+    //stream.writeObject(this)
+    stream.close()
   }
 }
