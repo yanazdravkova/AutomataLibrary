@@ -13,7 +13,7 @@ object Deserializer {
     val startState = lines(3)
     val finalStates = lines(4)
     val sizeOfDeltaFunction = lines(5).toInt
-    val deltaFunction = (for(i <- 6 to (sizeOfDeltaFunction + 6)) yield lines(i).split(" ")).toList
+    val deltaFunction = (for(i <- 6 to (sizeOfDeltaFunction + 5)) yield lines(i).split(" ")).toList
 
     new Automata(automataName,deserializeStates(states), deserializeLetters(alphabet),
       State(startState), deserializeStates(finalStates), deserializeDeltaFunction(deltaFunction))
@@ -31,7 +31,7 @@ object Deserializer {
 
   def deserializeDeltaFunction(deltaFunction: List[Array[String]]) = {
     def convertArrayOfStringsToRule(ruleString: Array[String]) =
-      ((State(ruleString(0)), Letter(ruleString(1))), State(ruleString(3)))
+      ((State(ruleString(0)), Letter(ruleString(1))), State(ruleString(2)))
     deltaFunction.map(x => convertArrayOfStringsToRule(x)).toMap
   }
 }

@@ -1,7 +1,11 @@
 [0m[[0m[0minfo[0m] [0m[0mPackaging D:\REPOS\Automatons\target\scala-2.13\automatons_2.13-0.1.jar ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	automata\Deserializer.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\Deserializer.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\RegistrationForm.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\RegistrationForm.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	automata\Deserializer$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\Deserializer$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\AutomataWithTheSameNameAlreadyRegistered$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\AutomataWithTheSameNameAlreadyRegistered$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\FinalStatesNotSubsetOfAllStates$.class[0m

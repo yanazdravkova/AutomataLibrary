@@ -23,8 +23,6 @@ object AutomataRegistration {
 }
 
 
-///probably move in separate file
-
 object AutomataRegistrationApp {
   val registrationInput: IO[RegistrationForm] = for {
     name <- promptInput("ENTER AUTOMATA NAME")
@@ -98,8 +96,8 @@ object AutomataRegistrationApp {
     _ <- putStrLn(map.toString)
   } yield ()
 
-  def serializeIfPossible(automataValidation: Validated[RegistrationError, Automata], seriializer: Serializer):Unit = automataValidation match {
-    case Valid(automata) => seriializer.serialize(automata)
+  def serializeIfPossible(automataValidation: Validated[RegistrationError, Automata]):Unit = automataValidation match {
+    case Valid(automata) => Serializer.serialize(automata)
     case _ =>
   }
   def registrationOutput(automataValidation: Validated[RegistrationError, Automata]): IO[Unit] = automataValidation match {
@@ -136,27 +134,32 @@ object AutomataRegistrationApp {
     case DeltaFunctionIsIncompatible => "Delta function is incompatible with the rest of the automata input"
   }
 
-  def loop(serializer: Serializer ): IO[Unit] = for {
+  def loop(): IO[Unit] = for {
     registrationForm <- registrationInput
     validatedAutomata = AutomataRegistration.registerAutomata(registrationForm)
-    tmp = serializeIfPossible(validatedAutomata, serializer)
+    tmp = serializeIfPossible(validatedAutomata)
     _ <- registrationOutput(validatedAutomata)
     shouldContinue <- promptForContinuation
-    _ <- if (shouldContinue) loop(serializer) else IO.unit
+    _ <- if (shouldContinue) loop() else IO.unit
   } yield ()
 
+  def print(a: Automata): IO[Unit] = for{
+    _ <-putStrLn("IN PRINT")
+    _ <- registrationOutput(Valid(a))
+  }yield ()
   def main(args: Array[String]): Unit = {
     /*val serializer = new Serializer
     AutomataRegistrationApp.loop(serializer).unsafeRun()
 */
-    val a1 = new Automata("test", Set(State("1"), State("2"), State("3"), State("4")), Set(Letter("a"), Letter("b"), Letter("c")),
+   /* val a1 = new Automata("test", Set(State("1"), State("2"), State("3"), State("4")), Set(Letter("a"), Letter("b"), Letter("c")),
       State("1"), Set(State("3"), State("4")), Map((State("1"), Letter("a")) -> State("2"), (State("2"), Letter("b")) -> State("3")))
 
     val a2 = new Automata("aut", Set(State("1"), State("2"), State("5"), State("4")), Set(Letter("a"), Letter("b"), Letter("c")),
       State("1"), Set(State("5"), State("4")), Map((State("1"), Letter("a")) -> State("2"), (State("2"), Letter("b")) -> State("3")))
 
-    val s = new Serializer
-    s.serialize(a1)
+    Serializer.serialize(a2)*/
+    val deserializedAutomata = Deserializer.deserialize("test")
+    AutomataRegistrationApp.print(deserializedAutomata).unsafeRun()
     //s.serialize(a2)
   }
 }
