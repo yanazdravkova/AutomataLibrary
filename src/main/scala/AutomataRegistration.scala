@@ -8,9 +8,10 @@ case class RegistrationForm(name: String,
                             deltaFunction: types.DeltaFunction)
 
 object AutomataRegistration {
+
   def registerAutomata(form: RegistrationForm): Validated[RegistrationError, Automata] = {
     import AutomataValidation._
-     val a = (
+    (
       validateName(form.name),
       validateStatesSet(form.states),
       validateAlphabet(form.alphabet),
@@ -18,10 +19,6 @@ object AutomataRegistration {
       validateFinalStatesSet(form.finalStates, form.states),
       validateDeltaFunction(form.deltaFunction, form.states, form.alphabet),
     ).zipMap(Automata.apply)
-    a match {
-      case Valid(a) => a.serialize()
-    }
-    return a
   }
 }
 
@@ -101,6 +98,10 @@ object AutomataRegistrationApp {
     _ <- putStrLn(map.toString)
   } yield ()
 
+  def serializeIfPossible(automataValidation: Validated[RegistrationError, Automata], seriializer: Serializer):Unit = automataValidation match {
+    case Valid(automata) => seriializer.serialize(automata)
+    case _ =>
+  }
   def registrationOutput(automataValidation: Validated[RegistrationError, Automata]): IO[Unit] = automataValidation match {
     case Valid(automata) => for {
       _ <- putStrLn("Automata registered successfully:")
@@ -120,7 +121,7 @@ object AutomataRegistrationApp {
 
   def errorToDescription(error: RegistrationError): String = error match{
     case NameIsEmpty => "Name is empty"
-
+    case AutomataWithTheSameNameAlreadyRegistered => "Name is not unique. Automata with the same name is already registered. "
     case StatesSetIsEmpty => "States set is empty"
 
     case AlphabetIsEmpty => "Alphabet is empty"
@@ -135,17 +136,28 @@ object AutomataRegistrationApp {
     case DeltaFunctionIsIncompatible => "Delta function is incompatible with the rest of the automata input"
   }
 
-  def loop: IO[Unit] = for {
+  def loop(serializer: Serializer ): IO[Unit] = for {
     registrationForm <- registrationInput
     validatedAutomata = AutomataRegistration.registerAutomata(registrationForm)
+    tmp = serializeIfPossible(validatedAutomata, serializer)
     _ <- registrationOutput(validatedAutomata)
-  //  shouldContinue <- promptForContinuation
-   // _ <- if (shouldContinue) loop else IO.unit
+    shouldContinue <- promptForContinuation
+    _ <- if (shouldContinue) loop(serializer) else IO.unit
   } yield ()
 
   def main(args: Array[String]): Unit = {
+    val serializer = new Serializer
+    AutomataRegistrationApp.loop(serializer).unsafeRun()
 
-    AutomataRegistrationApp.loop.unsafeRun()
+    /*val a1 = new Automata("test", Set(State("1"), State("2"), State("3"), State("4")), Set(Letter("a"), Letter("b"), Letter("c")),
+      State("1"), Set(State("3"), State("4")), Map((State("1"), Letter("a")) -> State("2"), (State("2"), Letter("b")) -> State("3")))
+
+    val a2 = new Automata("aut", Set(State("1"), State("2"), State("5"), State("4")), Set(Letter("a"), Letter("b"), Letter("c")),
+      State("1"), Set(State("5"), State("4")), Map((State("1"), Letter("a")) -> State("2"), (State("2"), Letter("b")) -> State("3")))
+
+    val s = new Serializer
+    s.serialize(a1)
+    s.serialize(a2)*/
   }
 }
 
