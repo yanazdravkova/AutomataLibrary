@@ -22,6 +22,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\Validated$ValidatedTuple6$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\RegistrationForm$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\RegistrationForm$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	automata\Commands$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\Commands$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\FinalStatesSetIsEmpty$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\FinalStatesSetIsEmpty$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	io\Console$.class[0m
@@ -120,6 +122,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\State$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\AutomataOperations$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\AutomataOperations$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	automata\Commands.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\Commands.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\Valid.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  D:\REPOS\Automatons\target\scala-2.13\classes\automata\Valid.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	automata\StatesSetIsEmpty$.class[0m

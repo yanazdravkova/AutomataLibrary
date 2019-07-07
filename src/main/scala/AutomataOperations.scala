@@ -31,7 +31,7 @@ object AutomataOperationsApp {
   } yield input
 
   def wordInput(prompt: String, currWord: List[Letter] = List.empty): IO[List[Letter]] = for {
-    letter <- promptInput("Next letter: ")
+    letter <- promptInput("Enter letter: ")
     updatedWord = currWord.appended(Letter(letter))
     _ <- wordOutput(updatedWord)
     shouldContinue <- promptForContinuation
@@ -39,7 +39,7 @@ object AutomataOperationsApp {
   } yield newUpdated
 
   def promptForContinuation: IO[Boolean] = for {
-    input <- promptInput("Register more? (y/n)")
+    input <- promptInput("Add more? (y/n)")
   } yield input == "y"
 
 
@@ -79,3 +79,24 @@ object AutomataOperationsApp {
   } yield ()
 }
 
+object Commands {
+  def promptForContinuation: IO[Boolean] = for {
+    input <- AutomataOperationsApp.promptInput("Choose another option? (y/n)")
+  } yield input == "y"
+
+  def proceedOption(option: String):IO[Unit] = option match{
+    case "1" => AutomataRegistrationApp.loopRegistratioOfAutomata
+    case "2" => AutomataOperationsApp.traverseWord
+    case "3" => AutomataOperationsApp.toDotFormat
+    case "4" => IO.unit
+    case _ => sys.error("Invalid choice of option")
+  }
+
+  def loop(): IO[Unit] = for {
+    choosedOption <- AutomataOperationsApp.promptInput("\r\nPress oprion: \r\n (1) Register automata \r\n " +
+      "(2) Check for word recognition \r\n (3) Convert automata to dot format \r\n (4) Exit")
+    _ <- proceedOption(choosedOption)
+    shouldContinue <- promptForContinuation
+    _ <- if(shouldContinue) loop else IO.unit
+  }yield()
+}
