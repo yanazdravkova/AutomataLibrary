@@ -9,7 +9,7 @@ Present functionalities:
 * Convert automata to format used for visualization with [Graphviz](https://dreampuf.github.io/GraphvizOnline)
 
 Some possible improvements
-* Improve code quality
 * Add composing automatas functionality
 * Add edit automata functionality
+* Improve code quality
 * Unit tests
